@@ -25,7 +25,6 @@ const PORT = 3000
 
 const server = net.createServer((socket) => {
   console.log(`Client connected ${socket.remoteAddress} | connected: ${server.connections}`)
-  socket.write('Echo server\r\n')
   socket.pipe(socket)
 
   socket.on('data', (data) => {
@@ -56,7 +55,7 @@ function login (data, client) {
     console.log(DB.get(data.username))
     if (DB.get(data.username).userData.password == data.password) {
       console.log('loggin success');
-      client.write(JSON.stringify(DB.get(data.username).userData));
+      client.write(`000-a${JSON.stringify(DB.get(data.username).userData)}`);
     }
   }
 }

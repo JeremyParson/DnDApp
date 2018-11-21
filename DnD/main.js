@@ -39,36 +39,29 @@ app.on('ready', () => {
   })
 })
 
-
-
-// Connect to server
-
-// var socket = io('http://localhost:3000');
-
-// socket.on('connect'), () => {
-//   socket.emit('msg', 'hello');
-// }
-
-// socket.on('connect', () => {
-
-// })
-
 client.connect(PORT, HOST, () => {
   console.log('connected to server!')
   netState = states.netStates.online
   // load login page when app connects to server
-  // client.write(JSON.stringify({"Hello":"World"}));
-
-  mainWindow.loadURL(format({
-    pathname: join(__dirname, 'lib', 'render', 'html', 'login.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+  render('login.html');
 })
 
+//Set up for interpriting incoming data
 client.on('data', (data) => {
-  console.log(data.toString());
+  console.log('received data', data.toString());
+    let protocol = data.toString().slice(0, 5)
+    if (data.toString().substring(5).charAt(0) == '{'){
+      let pdata = JSON.parse(data.toString().substring(5));
+      console.log(pdata)
+      console.log(`protocol : |${protocol}|`);
+      switch (protocol) {
+        case "000-a":
+          render('main.html');
+        break;
+      }
+    }
 })
+
 
 // Checks if there are any connection errors, if so it will redirect user to reconnecting page and try to resolve connection issues
 client.on('error', (err) => {
@@ -76,11 +69,7 @@ client.on('error', (err) => {
 
   if (netState !== states.netStates.timeout) {
     netState = states.netStates.timeout
-    mainWindow.loadURL(format({
-      pathname: join(__dirname, 'lib', 'render', 'html', 'lostConnection.html'),
-      protocol: 'file:',
-      slashes: true
-    }))
+    render('lostConnection.html');
   }else {
     mainWindow.webContents.send('main:reconnect_fail')
   }
@@ -113,20 +102,12 @@ ipcMain.on('register:remember', (e, data) => {
 
 // Changes current page on app to register.html
 ipcMain.on('register:GOTOregister', () => {
-  mainWindow.loadURL(format({
-    pathname: join(__dirname, 'lib', 'render', 'html', 'register.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+  render('register.html');
 })
 
 // Changes current page on app to login.html
 ipcMain.on('register:GOTOlogin', () => {
-  mainWindow.loadURL(format({
-    pathname: join(__dirname, 'lib', 'render', 'html', 'login.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+  render('login.html');
 })
 
 // this will wait for the reconnect page to ask for a reconnection to the server. if it fails it will start the process over again, else it will return to login.html
@@ -134,11 +115,7 @@ ipcMain.on('lostConnection:reconnect', () => {
   client.connect(PORT, HOST, () => {
     console.log('connected to server!')
     netState = states.netStates.online
-    mainWindow.loadURL(format({
-      pathname: join(__dirname, 'lib', 'render', 'html', 'login.html'),
-      protocol: 'file:',
-      slashes: true
-    }))
+    render('login.html');
   })
 })
 
@@ -146,3 +123,11 @@ ipcMain.on('register:register', (e, data) => {
     console.log(data);
     client.write(`002${JSON.stringify(data)}`);
 });
+
+function render(filename){
+  mainWindow.loadURL(format({
+    pathname: join(__dirname, 'lib', 'render', 'html', filename),
+    protocol: 'file:',
+    slashes: true
+  }))
+}

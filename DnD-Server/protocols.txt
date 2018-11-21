@@ -1,3 +1,11 @@
+in <===
 001:login
 002:register
 003:message
+
+out ===>
+000-a:login success
+000-b:login failure
+
+001-a:register success
+001-b:register failure

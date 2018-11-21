@@ -1,0 +1,30 @@
+.left_Right{
+    /* padding-right: 10%; */
+    background-color: grey;
+}
+
+.top_bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 3vh;
+    background-color: rgb(66, 66, 66);
+}
+
+#top{
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+#bottom{
+    height: 24vh;
+}
+
+#container{
+    display: flex;
+    flex-direction: row;
+}
+
+#right{
+    padding-right: 3%;
+}

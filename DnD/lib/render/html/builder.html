@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src = "../../../framework/api/p5/p5.js" defer></script>
+    <script src = "../../../framework/api/jquery.js" defer></script>
+    <script src = "../../../framework/api/jstree-master/jstree-master/dist/jstree.js" defer></script>
+    <script src = "../../../framework/api/knockout.js"></script>
+    <script src = "../js/builder.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../css/builder.css">
+    <link rel="stylesheet" type="text/css" href="../../../framework/api/jstree-master/jstree-master/dist/themes/default/style.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class = "top_bottom" id = "top">
+        <input type="button" value = "value">
+        <input type="button" value = "value">
+        <input type="button" value = "value">
+        <input type="button" value = "value">
+        <input type="button" value = "value">
+        <input type="button" value = "value">
+    </div>
+    <div id = "container">
+        <div class = "left_Right">LEFT</div>
+        <div id = "canvas"></div>
+        <div class = "left_Right" id = "right">
+            <div id="html1">
+                <ul>
+                    <li data-jstree='{"opened":true,"selected":true}'>Root
+                        <ul>
+                          <li data-jstree='{"disabled":true}'>Child</li>
+                          <li data-jstree='{"icon":"../../GFX/icons/Builder/texture.png"}'>
+                            Child</li>
+                          <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                            Child</li>
+                        </ul>
+                      </li>
+                </ul>
+              </div>
+        </div>
+    </div>
+    <div class = "top_bottom" id = "bottom">BOTTOM</div>
+</body>
+</html>
