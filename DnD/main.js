@@ -124,6 +124,10 @@ ipcMain.on('register:register', (e, data) => {
     client.write(`002${JSON.stringify(data)}`);
 });
 
+ipcMain.on('redirect:builder', (e, data) => {
+  render('builder.html');
+});
+
 function render(filename){
   mainWindow.loadURL(format({
     pathname: join(__dirname, 'lib', 'render', 'html', filename),

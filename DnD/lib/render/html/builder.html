@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src = "../../../framework/api/p5/p5.js" defer></script>
     <script src = "../../../framework/api/jquery.js" defer></script>
     <script src = "../../../framework/api/jstree-master/jstree-master/dist/jstree.js" defer></script>
-    <script src = "../../../framework/api/knockout.js"></script>
+    <script src = "../../../framework/api/p5/p5.js" defer></script>
+    <script src = "../../../framework/api/p5/p5.play-master/lib/p5.play.js" defer></script>
+    <script src = "../../../framework/api/p5/p5.collide2D-master/p5.collide2D-master/p5.collide2d.js" defer></script>
+    <script src = "../../../framework/api/knockout.js" defer></script>
+    <script src = "../js/builder.objs/objects.js" defer></script>
     <script src = "../js/builder.js" defer></script>
     <link rel="stylesheet" type="text/css" href="../css/builder.css">
     <link rel="stylesheet" type="text/css" href="../../../framework/api/jstree-master/jstree-master/dist/themes/default/style.css">
@@ -24,7 +27,7 @@
         <input type="button" value = "value">
     </div>
     <div id = "container">
-        <div class = "left_Right">LEFT</div>
+        <div id = "properties" class = "left_Right">LEFT</div>
         <div id = "canvas"></div>
         <div class = "left_Right" id = "right">
             <div id="html1">

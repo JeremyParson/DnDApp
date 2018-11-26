@@ -28,3 +28,7 @@
 #right{
     padding-right: 3%;
 }
+
+.property{
+    border-top: 1px solid black;
+}
